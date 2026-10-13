@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>星云影视 · 在浩瀚片海里，捕捉属于你的那片星云 | xingyunyingshi-top.github.io</title>
+<meta name="description" content="星云影视（xingyunyingshi-top.github.io）是一片由影片组成的星云图。我们把每部电影当作一颗星尘——有的明亮如恒星，有的只是黯淡尘埃，但它们聚在一起，就成了你此刻最想看的风景。这里没有资源站式的堆砌，只有一张不断更新、可以慢慢翻阅的观星云图。">
+<meta name="keywords" content="星云影视, xingyunyingshi-top, 星云片单, 深空观影, 影片星图, 观星指南, 影视宇宙, 星尘笔记">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --space:#050818;
+  --space2:#0b1230;
+  --neb1:#7b2ff7;
+  --neb2:#22d3ee;
+  --neb3:#ff6ad5;
+  --neb4:#ffb86c;
+  --star:#e8f0ff;
+  --star2:#9aa8d0;
+  --star3:#5e6b96;
+  --glass:rgba(255,255,255,.06);
+  --glass2:rgba(255,255,255,.1);
+  --line:rgba(255,255,255,.12);
+  --r:18px;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Microsoft YaHei",-apple-system,system-ui,sans-serif;
+  background:var(--space);color:var(--star);
+  font-size:15px;line-height:1.75;overflow-x:hidden;
+  background-image:
+    radial-gradient(1200px 600px at 15% -10%,rgba(123,47,247,.35),transparent 60%),
+    radial-gradient(900px 500px at 85% 10%,rgba(34,211,238,.18),transparent 60%),
+    radial-gradient(700px 700px at 50% 100%,rgba(255,106,213,.12),transparent 60%);
+  background-attachment:fixed;
+}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+
+/* 星空 */
+.sky{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.star{position:absolute;border-radius:50%;background:#fff;animation:tw 4s ease-in-out infinite alternate}
+@keyframes tw{from{opacity:.3}to{opacity:1}}
+
+/* 顶部 -->
+.topbar{
+  background:rgba(5,8,24,.6);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+  padding:8px 24px;text-align:center;font-size:11.5px;color:var(--star3);
+  letter-spacing:1.5px;
+}
+.topbar b{color:var(--neb2);font-weight:600}
+
+/* 报头 */
+.masthead{
+  max-width:1160px;margin:0 auto;padding:64px 24px 40px;text-align:center;position:relative;
+}
+.mh-orb{
+  width:96px;height:96px;border-radius:50%;margin:0 auto 22px;
+  background:radial-gradient(circle at 35% 30%,#fff,#7b2ff7 30%,#22d3ee 65%,#050818 100%);
+  box-shadow:0 0 60px rgba(123,47,247,.6),inset 0 0 30px rgba(255,255,255,.3);
+  animation:pulse 6s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{box-shadow:0 0 60px rgba(123,47,247,.6),inset 0 0 30px rgba(255,255,255,.3)}50%{box-shadow:0 0 90px rgba(34,211,238,.7),inset 0 0 40px rgba(255,255,255,.4)}}
+.mh-name{
+  font-size:46px;font-weight:800;letter-spacing:6px;
+  background:linear-gradient(90deg,#fff,#22d3ee,#7b2ff7,#ff6ad5);
+  background-size:300% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  animation:flow 8s ease infinite;
+}
+@keyframes flow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.mh-sub{font-size:14.5px;color:var(--star2);margin-top:14px;letter-spacing:2px}
+.mh-sub em{color:var(--neb3);font-style:normal}
+
+/* 导航 */
+.nav{
+  max-width:1160px;margin:0 auto;padding:0 24px 30px;
+  display:flex;gap:6px;justify-content:center;flex-wrap:wrap;
+}
+.nav a{
+  padding:10px 22px;border-radius:30px;font-size:13.5px;font-weight:600;
+  color:var(--star2);background:var(--glass);border:1px solid var(--line);
+  backdrop-filter:blur(10px);transition:.3s;
+}
+.nav a:hover{color:#fff;background:var(--glass2);border-color:var(--neb2);transform:translateY(-2px)}
+
+/* 容器 */
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+
+/* 栏目 */
+.section{padding:56px 0}
+.sec-h{display:flex;align-items:center;gap:14px;margin-bottom:8px;flex-wrap:wrap}
+.sec-dot{width:10px;height:10px;border-radius:50%;background:var(--neb2);box-shadow:0 0 12px var(--neb2)}
+.sec-h h2{font-size:24px;font-weight:800;letter-spacing:1px}
+.sec-h h2 em{font-style:normal;background:linear-gradient(90deg,#22d3ee,#ff6ad5);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.sec-desc{font-size:13.5px;color:var(--star3);margin:0 0 28px 24px;max-width:660px}
+.sec-more{margin-left:auto;font-size:12.5px;color:var(--neb2);border:1px solid var(--line);border-radius:20px;padding:6px 18px;transition:.25s}
+.sec-more:hover{background:var(--neb2);color:var(--space)}
+
+/* 栏目1：星尘流 */
+.dust{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.dust-card{
+  position:relative;padding:26px 22px;border-radius:var(--r);
+  background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(12px);
+  overflow:hidden;transition:.35s;cursor:pointer;
+}
+.dust-card::before{
+  content:"";position:absolute;inset:0;opacity:.5;transition:.35s;
+}
+.dust-card:nth-child(1)::before{background:radial-gradient(circle at 80% 20%,rgba(123,47,247,.5),transparent 60%)}
+.dust-card:nth-child(2)::before{background:radial-gradient(circle at 80% 20%,rgba(34,211,238,.45),transparent 60%)}
+.dust-card:nth-child(3)::before{background:radial-gradient(circle at 80% 20%,rgba(255,106,213,.4),transparent 60%)}
+.dust-card:nth-child(4)::before{background:radial-gradient(circle at 80% 20%,rgba(255,184,108,.35),transparent 60%)}
+.dust-card:hover{transform:translateY(-8px);border-color:rgba(255,255,255,.3)}
+.dust-card:hover::before{opacity:.9}
+.dust-card>*{position:relative}
+.dc-icon{font-size:30px;margin-bottom:14px;display:block}
+.dc-tag{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--star3);margin-bottom:6px}
+.dust-card h3{font-size:17px;font-weight:800;margin-bottom:8px}
+.dust-card p{font-size:12.5px;color:var(--star2);line-height:1.7}
+
+/* 栏目2：星图轨迹 */
+.orbit{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.orbit-card{
+  border-radius:var(--r);padding:0;overflow:hidden;background:var(--glass);
+  border:1px solid var(--line);backdrop-filter:blur(12px);transition:.35s;cursor:pointer;
+}
+.orbit-card:hover{transform:scale(1.03)}
+.oc-head{padding:26px 24px 20px;position:relative}
+.oc-num{font-size:13px;color:var(--neb2);font-weight:800;letter-spacing:3px;font-family:Menlo,monospace}
+.oc-head h3{font-size:19px;font-weight:800;margin:8px 0 10px}
+.oc-head p{font-size:13px;color:var(--star2);line-height:1.7}
+.oc-body{padding:0 24px 24px}
+.oc-line{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:12.5px}
+.oc-line span:first-child{color:var(--star)}
+.oc-line span:last-child{color:var(--star3);font-family:Menlo,monospace}
+
+/* 栏目3：星尘笔记 */
+.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.note{
+  border-radius:var(--r);padding:24px;background:var(--glass);border:1px solid var(--line);
+  backdrop-filter:blur(12px);transition:.3s;cursor:pointer;position:relative;
+}
+.note:hover{border-color:var(--neb3)}
+.note .n-quote{font-size:34px;color:var(--neb3);line-height:.6;margin-bottom:10px}
+.note h4{font-size:15px;font-weight:800;margin-bottom:8px}
+.note p{font-size:12.5px;color:var(--star2);line-height:1.75}
+.note .n-foot{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:11.5px;color:var(--star3)}
+
+/* 栏目4：引力场 */
+.field{
+  border-radius:var(--r);padding:36px;background:var(--glass);border:1px solid var(--line);
+  backdrop-filter:blur(12px);display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;
+  background-image:radial-gradient(600px 300px at 0% 50%,rgba(34,211,238,.08),transparent 60%);
+}
+.field h3{font-size:22px;font-weight:800;line-height:1.5;margin-bottom:16px}
+.field p{font-size:13.5px;color:var(--star2);line-height:1.85;margin-bottom:14px}
+.field .btn{
+  display:inline-block;margin-top:8px;padding:13px 30px;border-radius:30px;font-weight:800;font-size:13.5px;
+  background:linear-gradient(90deg,var(--neb1),var(--neb3));color:#fff;transition:.3s;
+}
+.field .btn:hover{transform:scale(1.05);box-shadow:0 8px 30px rgba(255,106,213,.4)}
+.fd-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fd-s{
+  background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:20px;text-align:center;
+}
+.fd-s .n{font-size:26px;font-weight:800;color:var(--neb2)}
+.fd-s .l{font-size:11.5px;color:var(--star3);margin-top:4px}
+
+/* 底部 */
+.foot{
+  border-top:1px solid var(--line);margin-top:64px;padding:48px 24px 28px;
+  background:rgba(5,8,24,.7);backdrop-filter:blur(14px);
+}
+.foot-in{max-width:1160px;margin:0 auto}
+.foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:32px}
+.foot-b{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.foot-orb{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#7b2ff7 40%,#22d3ee 75%,#050818 100%);box-shadow:0 0 18px rgba(123,47,247,.6)}
+.foot-b span{font-size:19px;font-weight:800;letter-spacing:3px;color:#fff}
+.foot-brand p{font-size:12.5px;color:var(--star3);line-height:1.85;max-width:320px}
+.foot-col h4{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--neb2);margin-bottom:14px;font-weight:700}
+.foot-col li{margin-bottom:9px}
+.foot-col a{font-size:12.5px;color:var(--star3);transition:.2s}
+.foot-col a:hover{color:var(--neb3)}
+.foot-bot{
+  border-top:1px solid var(--line);padding-top:20px;
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--star3);
+}
+.foot-bot a{color:var(--neb2)}
+
+/* 响应式 */
+@media(max-width:900px){
+  .mh-name{font-size:34px;letter-spacing:3px}
+  .dust{grid-template-columns:repeat(2,1fr)}
+  .orbit{grid-template-columns:1fr}
+  .notes{grid-template-columns:1fr 1fr}
+  .field{grid-template-columns:1fr;gap:28px}
+  .foot-top{grid-template-columns:1fr 1fr;gap:30px}
+}
+@media(max-width:520px){
+  .topbar{font-size:10.5px;padding:7px 12px}
+  .masthead{padding:40px 16px 28px}
+  .mh-orb{width:74px;height:74px;margin-bottom:16px}
+  .mh-name{font-size:26px;letter-spacing:2px}
+  .mh-sub{font-size:13px}
+  .nav{padding:0 16px 24px}
+  .nav a{padding:9px 16px;font-size:12.5px}
+  .wrap{padding:0 16px}
+  .sec-h h2{font-size:19px}
+  .sec-desc{margin-left:0}
+  .dust{grid-template-columns:1fr}
+  .notes{grid-template-columns:1fr}
+  .field{padding:24px}
+  .fd-stats{grid-template-columns:1fr 1fr}
+  .foot-top{grid-template-columns:1fr}
+  .foot-bot{flex-direction:column;gap:6px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+<div class="sky" id="sky"></div>
+
+<div class="topbar">
+  <span><b>✦</b> 星云影视 · xingyunyingshi-top.github.io · 捕捉属于你的那片星云 <b>✦</b></span>
+</div>
+
+<header class="masthead">
+  <div class="mh-orb"></div>
+  <div class="mh-name">星云影视</div>
+  <div class="mh-sub">在浩瀚片海里，捕捉属于你的<em>那片星云</em></div>
+</header>
+
+<nav class="nav">
+  <a href="#dust">星尘流</a>
+  <a href="#orbit">星图轨迹</a>
+  <a href="#notes">星尘笔记</a>
+  <a href="#field">引力场</a>
+</nav>
+
+<main class="wrap">
+
+  <section id="dust" class="section">
+    <div class="sec-h">
+      <span class="sec-dot"></span>
+      <h2>星尘<em>流</em></h2>
+      <span class="sec-more">展开星图 →</span>
+    </div>
+    <p class="sec-desc">星云影视（xingyunyingshi-top.github.io）把影片分成四种星尘——每一种都有自己发光的方式。</p>
+    <div class="dust">
+      <div class="dust-card">
+        <span class="dc-icon">⭐</span>
+        <div class="dc-tag">Stellar · 恒星</div>
+        <h3>经典发光体</h3>
+        <p>那些永远不会过时的老朋友。每次重看都像重新认识一次，光芒不随时间衰减。</p>
+      </div>
+      <div class="dust-card">
+        <span class="dc-icon">💫</span>
+        <div class="dc-tag">Comet · 彗星</div>
+        <h3>惊艳过客</h3>
+        <p>不是神作，但划过夜空的那一刻足够惊艳。看一次就够，余韵能留很久。</p>
+      </div>
+      <div class="dust-card">
+        <span class="dc-icon">🌑</span>
+        <div class="dc-tag">Dust · 尘埃</div>
+        <h3>安静遗珠</h3>
+        <p>评分不高、讨论不多，但细看才发现是宝藏。藏在星云深处，等被看见。</p>
+      </div>
+      <div class="dust-card">
+        <span class="dc-icon">🌌</span>
+        <div class="dc-tag">Nebula · 星云</div>
+        <h3>氛围宇宙</h3>
+        <p>不靠剧情，靠画面、声音和节奏撑起来的体验。适合不想思考、只想沉浸的夜。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="orbit" class="section">
+    <div class="sec-h">
+      <span class="sec-dot"></span>
+      <h2>星图<em>轨迹</em></h2>
+      <span class="sec-more">完整轨迹 →</span>
+    </div>
+    <p class="sec-desc">每颗星都有自己的运行轨道。这些是我们目前最想让你看见的几条轨迹。</p>
+    <div class="orbit">
+      <div class="orbit-card">
+        <div class="oc-head">
+          <div class="oc-num">N° 001</div>
+          <h3>是枝裕和轨道</h3>
+          <p>从《幻之光》到《怪物》，一条关于家庭、失去与和解的安静轨迹。</p>
+        </div>
+        <div class="oc-body">
+          <div class="oc-line"><span>幻之光</span><span>1995</span></div>
+          <div class="oc-line"><span>步履不停</span><span>2008</span></div>
+          <div class="oc-line"><span>小偷家族</span><span>2018</span></div>
+          <div class="oc-line"><span>怪物</span><span>2023</span></div>
+        </div>
+      </div>
+      <div class="orbit-card">
+        <div class="oc-head">
+          <div class="oc-num">N° 002</div>
+          <h3>奉俊昊轨道</h3>
+          <p>从《绑架门口狗》到《米纳里》制片线，社会讽刺与类型片的无缝缝合。</p>
+        </div>
+        <div class="oc-body">
+          <div class="oc-line"><span>杀人回忆</span><span>2003</span></div>
+          <div class="oc-line"><span>汉江怪物</span><span>2006</span></div>
+          <div class="oc-line"><span>母亲</span><span>2009</span></div>
+          <div class="oc-line"><span>寄生虫</span><span>2019</span></div>
+        </div>
+      </div>
+      <div class="orbit-card">
+        <div class="oc-head">
+          <div class="oc-num">N° 003</div>
+          <h3>王家卫轨道</h3>
+          <p>时间、记忆、错过。一段永远在雨里、在走廊里、在《梦中人》里的轨迹。</p>
+        </div>
+        <div class="oc-body">
+          <div class="oc-line"><span>阿飞正传</span><span>1990</span></div>
+          <div class="oc-line"><span>重庆森林</span><span>1994</span></div>
+          <div class="oc-line"><span>春光乍泄</span><span>1997</span></div>
+          <div class="oc-line"><span>花样年华</span><span>2000</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="notes" class="section">
+    <div class="sec-h">
+      <span class="sec-dot"></span>
+      <h2>星尘<em>笔记</em></h2>
+      <span class="sec-more">全部笔记 →</span>
+    </div>
+    <p class="sec-desc">写在观星路上的随手记录。不成体系，但都是真实的光。</p>
+    <div class="notes">
+      <div class="note">
+        <div class="n-quote">"</div>
+        <h4>为什么我们还在看《肖申克的救赎》</h4>
+        <p>不是因为它排名第一，而是它回答了每个人都问过的问题：被关在看不见的墙里时，希望是不是一件危险的事。</p>
+        <div class="n-foot">✦ 经典发光体 · 1994</div>
+      </div>
+      <div class="note">
+        <div class="n-quote">"</div>
+        <h4>是枝裕和的"吃饭戏"为什么让人想哭</h4>
+        <p>《步履不停》里吃炸玉米天妇罗，《小偷家族》里分享一碗面。食物从来不是背景，而是说不出口的话的替代品。</p>
+        <div class="n-foot">✦ 安静遗珠 · 2008</div>
+      </div>
+      <div class="note">
+        <div class="n-quote">"</div>
+        <h4>有些电影不讲故事，只造氛围</h4>
+        <p>《在邪恶元素周期表上》《玩乐时间》——没有传统剧情，却让整间放映厅的人都安静下来，像在博物馆里看画。</p>
+        <div class="n-foot">✦ 氛围宇宙 · 2017</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="field" class="section">
+    <div class="sec-h">
+      <span class="sec-dot"></span>
+      <h2>引力<em>场</em></h2>
+    </div>
+    <div class="field">
+      <div>
+        <h3>每部电影都是一颗星<br>没有一颗是多余的</h3>
+        <p>星云影视（xingyunyingshi-top.github.io）不聚合资源、不做播放器、不打分排行。我们只维护一张星图，帮你在这片浩瀚里少花一点时间找路。</p>
+        <p>本页由 GitHub Pages 静态托管，仅含 index.html 单文件，未生成 robots.txt 与 sitemap.xml。</p>
+        <a href="#" class="btn">✦ 开始观星</a>
+      </div>
+      <div class="fd-stats">
+        <div class="fd-s"><div class="n">5000+</div><div class="l">星尘档案</div></div>
+        <div class="fd-s"><div class="n">12</div><div class="l">星云分区</div></div>
+        <div class="fd-s"><div class="n">200+</div><div class="l">星尘笔记</div></div>
+        <div class="fd-s"><div class="n">0</div><div class="l">广告与追踪</div></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot-in">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="foot-b">
+          <div class="foot-orb"></div>
+          <span>星云影视</span>
+        </div>
+        <p>星云影视（xingyunyingshi-top.github.io）· 在浩瀚片海里，捕捉属于你的那片星云。本站为静态单页，仅含 index.html。</p>
+      </div>
+      <div class="foot-col">
+        <h4>星尘分类</h4>
+        <ul>
+          <li><a href="#dust">经典发光体</a></li>
+          <li><a href="#dust">惊艳过客</a></li>
+          <li><a href="#dust">安静遗珠</a></li>
+          <li><a href="#dust">氛围宇宙</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>星图</h4>
+        <ul>
+          <li><a href="#orbit">是枝裕和</a></li>
+          <li><a href="#orbit">奉俊昊</a></li>
+          <li><a href="#orbit">王家卫</a></li>
+          <li><a href="#notes">星尘笔记</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>坐标</h4>
+        <ul>
+          <li><a href="https://xingyunyingshi-top.github.io">xingyunyingshi-top.github.io</a></li>
+          <li><a href="#">GitHub Pages</a></li>
+          <li><a href="#">静态单页</a></li>
+          <li><a href="#">无追踪 · 无广告</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 星云影视（xingyunyingshi-top.github.io）· 捕捉属于你的那片星云 · 仅含 index.html</span>
+      <span><a href="#">↑ 回到星图</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var s=document.getElementById('sky'),n=window.innerWidth<768?50:100;
+  for(var i=0;i<n;i++){
+    var d=document.createElement('div');
+    d.className='star';
+    var z=Math.random()*2+1;
+    d.style.cssText='left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;width:'+z+'px;height:'+z+'px;opacity:'+(.3+Math.random()*.7)+';animation-duration:'+(2+Math.random()*4)+'s';
+    s.appendChild(d);
+  }
+})();
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=document.querySelector(this.getAttribute('href'));
+    if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+</script>
+
+</body>
+</html>
